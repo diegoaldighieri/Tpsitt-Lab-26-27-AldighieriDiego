@@ -1,4 +1,7 @@
 #include<unistd.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/wait.h>
 
 int main(){
 
@@ -10,7 +13,26 @@ int main(){
     pid_t ritorno = fork();
     if(ritorno == -1){
         fprintf(stderr, "Error fork");
-        exit(-1);
+        exit(-2);
     }
 
+    if(!ritorno){
+
+        close(fd[0]);
+
+        char msg[] = "Ciao boateng";
+        write(fd[1], msg, sizeof(msg));
+
+
+        close(fd[1]);
+        exit(0);
+    }
+
+    close(fd[1]);
+
+    char buffer[100];
+    int bytes_retti = read(fd[0], buffer, sizeof(buffer)); // * Il read ritorna un intero
+    printf("%s", buffer);
+    
+    close(fd[0]);
 }
