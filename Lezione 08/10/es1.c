@@ -30,9 +30,9 @@ int main(){
 
     close(fd[1]);
 
-    char buffer[100];
-    int bytes_retti = read(fd[0], buffer, sizeof(buffer)); // * Il read ritorna un intero
-    printf("%s", buffer);
-    
+    int buffer;
+    int bytes_letti = read(fd[0], &buffer, sizeof(buffer)); // * Il read ritorna un intero
+    printf("%d", buffer);
+
     close(fd[0]);
 }
