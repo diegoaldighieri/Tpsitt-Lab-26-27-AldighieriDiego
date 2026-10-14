@@ -7,14 +7,15 @@
 
 #define MAX 100
 
+// * Struct richiesta dalla consegna: array e non puntatore
 struct Messaggio {
     char testo[MAX];
     int vocali;
 };
 
 int main(void) {
-    int pipe1[2];
-    int pipe2[2];
+    int pipe1[2];   // * padre al figlio
+    int pipe2[2];   // * figlio al padre
 
     if (pipe(pipe1) == -1 || pipe(pipe2) == -1) {
         perror("pipe");
@@ -27,6 +28,7 @@ int main(void) {
         exit(-2);
     }
 
+    // * Processo figlio: maiuscolo e conteggio vocali
     if (ritorno_fork == 0) {
         close(pipe1[1]);
         close(pipe2[0]);
@@ -37,19 +39,22 @@ int main(void) {
 
         struct Messaggio m;
         m.vocali = 0;
-        for (int i = 0; testo[i] != '\0'; i++) {
-            testo[i] = toupper(testo[i]);
-            if (testo[i] == 'A' || testo[i] == 'E' || testo[i] == 'I' || testo[i] == 'O' || testo[i] == 'U') {
+        int i = 0;
+        while (testo[i] != '\0') {
+            m.testo[i] = toupper(testo[i]);
+            if (m.testo[i] == 'A' || m.testo[i] == 'E' || m.testo[i] == 'I' || m.testo[i] == 'O' || m.testo[i] == 'U') {
                 m.vocali++;
             }
+            i++;
         }
-        strcpy(m.testo, testo);
+        m.testo[i] = '\0';
 
         write(pipe2[1],&m, sizeof(m));
         close(pipe2[1]);
         exit(0);
     }
 
+    // * Processo padre
     close(pipe1[0]);
     close(pipe2[1]);
 
@@ -57,7 +62,13 @@ int main(void) {
     printf("Inserisci una stringa: ");
     fgets(testo, sizeof(testo), stdin);
 
-    write(pipe1[1], testo, strlen(testo) + 1);
+    // * Tolgo l'invio finale che fgets lascia nella stringa
+    int lunghezza = strlen(testo);
+    if (lunghezza > 0 && testo[lunghezza - 1] == '\n') {
+        testo[lunghezza - 1] = '\0';
+    }
+
+    write(pipe1[1], testo, strlen(testo) + 1);   // * +1 per inviare anche il '\0'
     close(pipe1[1]);
 
     struct Messaggio risposta;
@@ -66,7 +77,7 @@ int main(void) {
 
     wait(NULL);
 
-    printf("Stringa maiuscola: %s", risposta.testo);
-    printf("Numero di vocali: %d\n", risposta.vocali);
+    printf("Stringa maiuscola:%s\n", risposta.testo);
+    printf("Numero di vocali:%d\n", risposta.vocali);
     return 0;
 }
