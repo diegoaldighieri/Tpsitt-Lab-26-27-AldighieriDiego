@@ -13,7 +13,7 @@ struct Messaggio {
     int vocali;
 };
 
-int main(void) {
+int main() {
     int pipe1[2];   // * padre al figlio
     int pipe2[2];   // * figlio al padre
 
