@@ -1,0 +1,11 @@
+cmake-build-*/
+build/
+*.exe
+*.o
+*.out
+*
+!*/
+!*.*
+CMakeLists.txt
+.idea/
+auto-commit.ps1
