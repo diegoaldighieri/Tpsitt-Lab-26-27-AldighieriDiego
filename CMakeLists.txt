@@ -14,3 +14,12 @@ add_executable(writer Esercizi-named-pipe/EsB/writer.c)
 
 add_executable(ping Esercizi-named-pipe/EsC/ping.c)
 add_executable(pong Esercizi-named-pipe/EsC/pong.c)
+
+
+add_executable(veicoli Funzioni-virtuali/Es1/veicoli.cpp)
+add_executable(documento Funzioni-virtuali/Es2/documento.cpp)
+add_executable(libro_paga Funzioni-virtuali/Es3/libro_paga.cpp)
+add_executable(strumenti Funzioni-virtuali/Es4/strumenti.cpp)
+add_executable(costr_distr Funzioni-virtuali/Es5/costr_distr.cpp)
+add_executable(biblioteca Funzioni-virtuali/Es6/biblioteca.cpp)
+add_executable(centralina Funzioni-virtuali/Es7/centralina.cpp)
