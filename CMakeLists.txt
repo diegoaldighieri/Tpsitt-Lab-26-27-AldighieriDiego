@@ -27,6 +27,7 @@ add_executable(documento Funzioni-virtuali/Es2/documento.cpp)
 add_executable(libro_paga Funzioni-virtuali/Es3/libro_paga.cpp)
 add_executable(strumenti Funzioni-virtuali/Es4/strumenti.cpp)
 add_executable(costr_distr Funzioni-virtuali/Es5/costr_distr.cpp)
+add_executable(biblioteca Funzioni-virtuali/Es6/biblioteca.cpp)
 add_executable(centralina Funzioni-virtuali/Es7/centralina.cpp)
 
 add_executable(vf_es01 Esercizi-Verifica-Fork/es01_quanti_processi.c)
@@ -44,3 +45,6 @@ add_executable(poli_veicoli Polimorfismo/Es1/veicoli.cpp)
 add_executable(poli_personaggi Polimorfismo/Es2/personaggi.cpp)
 add_executable(poli_pagamenti Polimorfismo/Es3/pagamenti.cpp)
 add_executable(poli_notifiche Polimorfismo/Es4/notifiche.cpp)
+
+
+add_executable(lezione_12_11 "Lezione 12-11/main.cpp")
