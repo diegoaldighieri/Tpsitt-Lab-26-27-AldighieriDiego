@@ -5,7 +5,7 @@ using namespace std;
 
 class Personaggio {
     public:
-    virtual ~Personaggio();
+    virtual ~Personaggio(){};
     virtual void attacca() = 0;
     virtual void presentati() = 0;
 };
@@ -28,8 +28,28 @@ public:
     void presentati() override {std::cout<<"presentato l'arciere"<<std::endl;};
 };
 
+void turno(Personaggio *p) {
+    p->attacca();
+    p->presentati();
+}
 
 
 int main() {
+
+    std::vector<Personaggio*> squadra;
+    squadra.push_back(new Guerriero());
+    squadra.push_back(new Mago());
+    squadra.push_back(new Arciere());
+    squadra.push_back(new Guerriero());
+
+    for (Personaggio *p : squadra) {
+        turno(p);
+    }
+
+    for (Personaggio *p : squadra) {
+        delete p;
+    }
+
+
     return 0;
 }
