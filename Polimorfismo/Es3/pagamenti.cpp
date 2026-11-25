@@ -47,7 +47,5 @@ int main() {
         delete pagamento;
     }
 
-
-
     return 0;
 }
