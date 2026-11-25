@@ -1,3 +1,9 @@
+cmake_minimum_required(VERSION 3.20)
+project(Tpsitt_Lab_26_27 C CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 add_executable(client1 Esercizi-named-pipe/Es1/client.c)
 add_executable(server1 Esercizi-named-pipe/Es1/server.c)
 

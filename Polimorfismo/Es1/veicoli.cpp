@@ -25,11 +25,26 @@ class Treno : public Veicoli {
 class Bicicletta : public Veicoli {
   public:
     void Muovi() override{std::cout<< "La bici si pedala"<<std::endl; }
-    void Descrizione() override{std::cout<<"Questo è una bici << std::endl; }
+    void Descrizione() override{std::cout<<"Questo è una bici "<< std::endl; }
 };
 
-
-
 int main() {
+    Veicoli* v1 = new Auto();
+    Veicoli* v2 = new Bicicletta();
+    Veicoli* v3 = new Treno();
+
+    v1->Descrizione();
+    v1->Muovi();
+
+    v2->Descrizione();
+    v2->Muovi();
+
+    v3->Descrizione();
+    v3->Muovi();
+
+    delete v1;
+    delete v2;
+    delete v3;
+
     return 0;
 }
